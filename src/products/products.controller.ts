@@ -18,7 +18,7 @@ export class ProductsController {
     // console.log(paginationDto)
     return this.productsService.findAll( paginationDto );
   }
-
+//This is the path: http://localhost:3000/api/products?limit=2&offset=4
   @Get(':term')
   findOne(@Param( 'term' ) term: string) {
     return this.productsService.findOnePlain( term );
