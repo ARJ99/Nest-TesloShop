@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nest - TesloShop</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      color: #f8fafc;
+      letter-spacing: 1px;
+    }
+
+    h1 .accent {
+      color: #38bdf8;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .card {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid #334155;
+      border-radius: 1rem;
+      padding: 1.5rem 1.75rem;
+      min-width: 260px;
+      flex: 0 1 300px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #38bdf8;
+    }
+
+    .card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid #38bdf8;
+      color: #f8fafc;
+    }
+
+    .card ul {
+      list-style: none;
+    }
+
+    .card li {
+      font-size: 0.95rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px dashed #334155;
+      font-family: 'Consolas', 'Courier New', monospace;
+    }
+
+    .card li:last-child {
+      border-bottom: none;
+    }
+
+    .card li .method {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 0.7rem;
+      border-radius: 4px;
+      padding: 0.1rem 0.4rem;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+      color: #f8fafc;
+    }
+
+    .method.get { background: #16a34a; }
+    .method.post { background: #2563eb; }
+    .method.patch { background: #d97706; }
+    .method.delete { background: #dc2626; }
+
+    .card li .path {
+      color: #94a3b8;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <h1>Nest - <span class="accent">TesloShop</span></h1>
+  <div class="cards">
+    <div class="card">
+      <h2>Auth</h2>
+      <ul>
+        <li><span class="method post">POST</span><span class="path">/api/auth/register</span></li>
+        <li><span class="method post">POST</span><span class="path">/api/auth/login</span></li>
+        <li><span class="method get">GET</span><span class="path">/api/auth/private</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Product</h2>
+      <ul>
+        <li><span class="method post">POST</span><span class="path">/api/products</span></li>
+        <li><span class="method get">GET</span><span class="path">/api/products</span></li>
+        <li><span class="method get">GET</span><span class="path">/api/products/:term</span></li>
+        <li><span class="method patch">PATCH</span><span class="path">/api/products/:id</span></li>
+        <li><span class="method delete">DELETE</span><span class="path">/api/products/:id</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Seed</h2>
+      <ul>
+        <li><span class="method get">GET</span><span class="path">/api/seed</span></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
