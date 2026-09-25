@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseGuards, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
@@ -8,6 +8,8 @@ import { User } from './entities/user.entity';
 import { RawHeader } from './decorators/get-rawheader.decorator';
 import { IncomingHttpHeaders } from 'http';
 import { Headers } from './decorators/get-headers.decorator';
+import { Roles } from './decorators/get-roles.decorator';
+import { UserRoleGuard } from './guards/user-role.guard';
 
 
 
@@ -41,6 +43,17 @@ export class AuthController {
       email: email,
       rawheader,
       headers
+    }
+  }
+
+  @Get('private2')
+  @Roles('admin')
+  @UseGuards(AuthGuard(), UserRoleGuard)
+  privateRoute2(@Getuser() user: User) {
+
+    return {
+      ok: true,
+      user
     }
   }
 }
