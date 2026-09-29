@@ -10,6 +10,7 @@ import { IncomingHttpHeaders } from 'http';
 import { Headers } from './decorators/get-headers.decorator';
 import { Roles } from './decorators/get-roles.decorator';
 import { UserRoleGuard } from './guards/user-role.guard';
+import { Auth } from './decorators/auth.decorator';
 
 
 
@@ -56,4 +57,16 @@ export class AuthController {
       user
     }
   }
+
+  @Get('private3')
+  @Auth('admin')
+  privateRoute3(@Getuser() user: User) {
+
+    return {
+      ok: true,
+      user
+    }
+  }
+
+
 }
