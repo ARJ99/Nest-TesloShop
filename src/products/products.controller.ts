@@ -6,18 +6,24 @@ import { PaginationDto } from './../common/dtos/pagination.dto';
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { Getuser } from 'src/auth/decorators/get-user.decorators';
 import { User } from 'src/auth/entities/user.entity';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Product } from './entities';
 
+@ApiTags('Products')
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) { }
 
   @Post()
+  @ApiResponse({ status: 201, description: 'Product was created', type: Product  })
+  @ApiResponse({ status: 400, description: 'Bad request' })
+  @ApiResponse({ status: 403, description: 'Forbidden' })
   @Auth('user') //This route required the role: user
   create(
     @Body() createProductDto: CreateProductDto,
     @Getuser() user: User,
   ) {
-    return this.productsService.create(createProductDto,user);
+    return this.productsService.create(createProductDto, user);
   }
 
   //This is the path: http://localhost:3000/api/products?limit=2&offset=4

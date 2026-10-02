@@ -11,9 +11,10 @@ import { Headers } from './decorators/get-headers.decorator';
 import { Roles } from './decorators/get-roles.decorator';
 import { UserRoleGuard } from './guards/user-role.guard';
 import { Auth } from './decorators/auth.decorator';
+import { ApiTags } from 'node_modules/@nestjs/swagger/dist/decorators/api-use-tags.decorator';
 
 
-
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) { }

@@ -1,6 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe, Logger } from '@nestjs/common';
 import { AppModule } from './app.module';
+import { SwaggerModule } from 'node_modules/@nestjs/swagger/dist/swagger-module';
+import { DocumentBuilder } from 'node_modules/@nestjs/swagger/dist/document-builder';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,8 +17,15 @@ async function bootstrap() {
     })
   );
 
+  const config = new DocumentBuilder()
+    .setTitle('Teslo Restful API')
+    .setDescription('Teslo shop endpoints')
+    .setVersion('1.0')
+    .build();
+  const documentFactory = () => SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, documentFactory);
 
   await app.listen(process.env.PORT);
-  logger.log(`App running on port ${ process.env.PORT }`);
+  logger.log(`App running on port ${process.env.PORT}`);
 }
 bootstrap();
